@@ -25,7 +25,6 @@ You should install pdfminer first.
 	git@github.com:johnlinp/pdf-to-markdown.git
 	cd pdfminer
 	make cmap
-	sudo python setup.py install
 
 The `make cmap` is necessary for documents containing Chinese characters.
 
