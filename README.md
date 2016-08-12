@@ -22,7 +22,7 @@ You should install pdfminer first.
 
 ### Else
 
-	git clone git@github.com:euske/pdfminer.git
+	git@github.com:johnlinp/pdf-to-markdown.git
 	cd pdfminer
 	make cmap
 	sudo python setup.py install
