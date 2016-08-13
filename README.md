@@ -1,3 +1,5 @@
+Note: you will need this: https://pypi.python.org/pypi/pycrypto
+
 # PDF To Markdown
 
 This is NOT a general-purpose converter.
