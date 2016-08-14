@@ -1,3 +1,5 @@
+Note: you will need this: https://pypi.python.org/pypi/pycrypto
+
 # PDF To Markdown
 
 This is NOT a general-purpose converter.
@@ -22,10 +24,9 @@ You should install pdfminer first.
 
 ### Else
 
-	git clone git@github.com:euske/pdfminer.git
+	git@github.com:johnlinp/pdf-to-markdown.git
 	cd pdfminer
 	make cmap
-	sudo python setup.py install
 
 The `make cmap` is necessary for documents containing Chinese characters.
 
