@@ -39,9 +39,10 @@ After you downloaded `pdf-to-markdown`
 
 Just type
 
-	python2 main.py <pdf>
+	python2 main.py <pdf> [output_dir]
 
 For example, you can use our example PDF file:
 
 	python2 main.py examples/neihu.pdf
+  python2 main.py examples/neihu.pdf ../
 

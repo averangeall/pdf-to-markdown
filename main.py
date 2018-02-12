@@ -3,7 +3,7 @@ import os
 import pdf2md
 
 def main(argv):
-	if len(argv) == 2:
+	if len(argv) == 2 or len(argv) == 3:
 		filename = argv[1]
 		title = os.path.splitext(os.path.basename(filename))[0]
 		print 'Parsing', filename
@@ -11,6 +11,9 @@ def main(argv):
 		print 'usage:'
 		print '    python main.py <pdf>'
 		return
+
+	if len(argv) == 3:
+		title = os.path.abspath(argv[2]) + '/' + title
 
 	parser = pdf2md.Parser(filename)
 	parser.extract()
