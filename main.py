@@ -2,7 +2,8 @@ import sys
 import os
 import pdf2md
 
-def main(argv):
+def main():
+	argv = sys.argv
 	if len(argv) == 2 or len(argv) == 3:
 		filename = argv[1]
 		title = os.path.splitext(os.path.basename(filename))[0]
@@ -30,5 +31,5 @@ def main(argv):
 	print 'Your markdown is at', writer.get_location()
 
 if __name__ == '__main__':
-	main(sys.argv)
+	main()
 

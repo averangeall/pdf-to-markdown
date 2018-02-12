@@ -46,3 +46,8 @@ For example, you can use our example PDF file:
 	python2 main.py examples/neihu.pdf
   python2 main.py examples/neihu.pdf ../
 
+System global install:
+	sudo python setup.py install
+
+Run it after install:
+	pdf_to_md examples/neihu.pdf ../
