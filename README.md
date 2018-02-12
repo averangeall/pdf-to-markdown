@@ -39,9 +39,15 @@ After you downloaded `pdf-to-markdown`
 
 Just type
 
-	python2 main.py <pdf>
+	python2 main.py <pdf> [print_to_console = 0]
 
 For example, you can use our example PDF file:
 
 	python2 main.py examples/neihu.pdf
+  python2 main.py examples/neihu.pdf 1
 
+System global install:
+	sudo python setup.py install
+
+Run it after install:
+	pdf_to_md examples/neihu.pdf 1
