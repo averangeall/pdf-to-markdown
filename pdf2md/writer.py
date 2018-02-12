@@ -22,9 +22,9 @@ class Writer(object):
 		self._title = title
 
 
-	def write(self, piles):
+	def write(self, piles, print_to_console = False):
 		if self._mode == 'simple':
-			self._write_simple(piles)
+			self._write_simple(piles, print_to_console)
 		elif self._mode == 'gitbook':
 			self._write_gitbook(piles)
 		else:
@@ -40,16 +40,19 @@ class Writer(object):
 			raise Exception('Unsupported mode: ' + self._mode)
 
 
-	def _write_simple(self, piles):
+	def _write_simple(self, piles, print_to_console = False):
 		filename = self._title + '.md'
-		with open(filename, 'w') as fwrite:
-			for pile in piles:
-				if pile.get_type() == 'image':
-					image = pile.get_image()
-					self._save_image(image, 'images')
-				markdown = pile.gen_markdown(self._syntax)
+		markdown = ''
+		for pile in piles:
+			if pile.get_type() == 'image':
+				image = pile.get_image()
+				self._save_image(image, 'images')
+			markdown += pile.gen_markdown(self._syntax)
+		if print_to_console:
+				print markdown
+		else:
+			with open(filename, 'w') as fwrite:
 				fwrite.write(markdown)
-
 
 	def _write_gitbook(self, piles):
 		intermediate = self._gen_gitbook_intermediate(piles)
