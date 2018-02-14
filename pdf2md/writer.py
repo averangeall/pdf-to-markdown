@@ -46,7 +46,8 @@ class Writer(object):
 		for pile in piles:
 			if pile.get_type() == 'image':
 				image = pile.get_image()
-				self._save_image(image, 'images')
+				if not print_to_console:
+					self._save_image(image, 'images')
 			markdown += pile.gen_markdown(self._syntax)
 		if print_to_console:
 				print markdown
