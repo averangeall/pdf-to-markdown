@@ -10,14 +10,14 @@ sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 import pdf2md
 
 def main(argv):
-    if len(argv) == 2:
-        filename = argv[1]
-        title = os.path.splitext(os.path.basename(filename))[0]
-        print('Parsing', filename)
-    else:
+    if len(argv) < 2 or argv[1] in ['-h', '--help']:
         print('usage:')
-        print('    python main.py <pdf>')
+        print('    {} <pdf>'.format(argv[0]))
         return
+
+    filename = argv[1]
+    title = os.path.splitext(os.path.basename(filename))[0]
+    print('Parsing', filename)
 
     parser = pdf2md.Parser(filename)
     parser.extract()
