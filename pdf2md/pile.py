@@ -63,7 +63,9 @@ class Pile(object):
         paragraphs = self._find_paragraphs(tables)
         images = self._find_images()
 
-        piles = sorted(tables + paragraphs + images, reverse=True, key=lambda x: x._get_anything().y0)
+        piles = tables + paragraphs + images
+        piles = list(filter(lambda x: x._empty(), piles))
+        piles = sorted(piles, reverse=True, key=lambda x: x._get_anything().y0)
 
         return piles
 
@@ -426,4 +428,6 @@ class Pile(object):
         coor_list.sort(reverse=reverse)
         return coor_list
 
+    def _empty(self):
+        return bool(self.images) or bool(self.texts)
 
