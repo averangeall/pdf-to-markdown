@@ -225,7 +225,7 @@ class Pile(object):
 
 
     def _is_overlap(self, top, bottom, obj):
-        assert top > bottom
+        assert top >= bottom
         return (bottom - self._SEARCH_DISTANCE) <= obj.y0 <= (top + self._SEARCH_DISTANCE) or \
                (bottom - self._SEARCH_DISTANCE) <= obj.y1 <= (top + self._SEARCH_DISTANCE)
 
