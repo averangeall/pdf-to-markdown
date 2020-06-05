@@ -352,9 +352,9 @@ class Pile(object):
 
 
     def _find_exist_coor(self, minimum, maximum, start_idx, line_coor, direction):
-        span = 0
+        span = -1
         line_exist = False
-        while not line_exist:
+        while not line_exist and start_idx+span+1 < len(line_coor):
             span += 1
             coor = line_coor[start_idx + span]
             line_exist = self._line_exists(coor, minimum, maximum, direction)
