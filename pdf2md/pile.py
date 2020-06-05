@@ -99,7 +99,7 @@ class Pile(object):
                 'height': text.y1 - text.y0,
                 'x': text.x0,
                 'y': text.y0,
-                'text': text.get_text().encode('utf8'),
+                'text': text.get_text(),
                 'fill': 'green',
             }
             html += rect.format(**info)
@@ -411,7 +411,7 @@ class Pile(object):
 
     def _create_td_tag(self, cell):
         indent = '\t' * 2
-        texts = [text.get_text().encode('utf8').strip() for text in cell['texts']]
+        texts = [text.get_text().strip() for text in cell['texts']]
         texts = ' '.join(texts)
         colspan = ' colspan={}'.format(cell['colspan']) if 'colspan' in cell else ''
         rowspan = ' rowspan={}'.format(cell['rowspan']) if 'rowspan' in cell else ''
