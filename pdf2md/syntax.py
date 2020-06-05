@@ -18,7 +18,7 @@ class BaseSyntax(object):
 
 
     def purify(self, text):
-        return text.get_text().encode('utf8').strip()
+        return text.get_text().strip()
 
 
 class UrbanSyntax(BaseSyntax):
@@ -27,7 +27,7 @@ class UrbanSyntax(BaseSyntax):
 
 
     def pattern(self, text):
-        content = text.get_text().encode('utf8').strip()
+        content = text.get_text().strip()
 
         if not content:
             return 'none'
@@ -62,7 +62,7 @@ class UrbanSyntax(BaseSyntax):
         return 'plain-text'
 
     def newline(self, text):
-        content = text.get_text().encode('utf8').strip()
+        content = text.get_text().strip()
 
         if text.x0 < 90.1: # special case for neihu page 2
             return True
@@ -78,7 +78,7 @@ class UrbanSyntax(BaseSyntax):
 
 
     def purify(self, text):
-        content = text.get_text().encode('utf8').strip()
+        content = text.get_text().strip()
 
         mo = re.match('(一|二|三|四|五|六|七|八|九|十)、(.*)', content)
         if mo:

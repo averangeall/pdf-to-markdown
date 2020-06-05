@@ -53,7 +53,7 @@ class Pile(object):
             elif type(obj) == LTChar:
                 pass
             elif type(obj) == LTLine:
-                pass                    
+                pass
             else:
                 assert False, "Unrecognized type: %s" % type(obj)
 
@@ -63,7 +63,9 @@ class Pile(object):
         paragraphs = self._find_paragraphs(tables)
         images = self._find_images()
 
-        piles = sorted(tables + paragraphs + images, reverse=True, key=lambda x: x._get_anything().y0)
+        piles = tables + paragraphs + images
+        piles = list(filter(lambda x: x._empty(), piles))
+        piles = sorted(piles, reverse=True, key=lambda x: x._get_anything().y0)
 
         return piles
 
@@ -99,7 +101,7 @@ class Pile(object):
                 'height': text.y1 - text.y0,
                 'x': text.x0,
                 'y': text.y0,
-                'text': text.get_text().encode('utf8'),
+                'text': text.get_text(),
                 'fill': 'green',
             }
             html += rect.format(**info)
@@ -202,7 +204,7 @@ class Pile(object):
                     paragraphs[idx].texts.append(text)
                     break
 
-        paragraphs = filter(None, paragraphs)
+        paragraphs = list(filter(lambda x: x._empty(), paragraphs))
 
         return paragraphs
 
@@ -225,7 +227,7 @@ class Pile(object):
 
 
     def _is_overlap(self, top, bottom, obj):
-        assert top > bottom
+        assert top >= bottom
         return (bottom - self._SEARCH_DISTANCE) <= obj.y0 <= (top + self._SEARCH_DISTANCE) or \
                (bottom - self._SEARCH_DISTANCE) <= obj.y1 <= (top + self._SEARCH_DISTANCE)
 
@@ -350,9 +352,9 @@ class Pile(object):
 
 
     def _find_exist_coor(self, minimum, maximum, start_idx, line_coor, direction):
-        span = 0
+        span = -1
         line_exist = False
-        while not line_exist:
+        while not line_exist and start_idx+span+1 < len(line_coor):
             span += 1
             coor = line_coor[start_idx + span]
             line_exist = self._line_exists(coor, minimum, maximum, direction)
@@ -411,7 +413,7 @@ class Pile(object):
 
     def _create_td_tag(self, cell):
         indent = '\t' * 2
-        texts = [text.get_text().encode('utf8').strip() for text in cell['texts']]
+        texts = [text.get_text().strip() for text in cell['texts']]
         texts = ' '.join(texts)
         colspan = ' colspan={}'.format(cell['colspan']) if 'colspan' in cell else ''
         rowspan = ' rowspan={}'.format(cell['rowspan']) if 'rowspan' in cell else ''
@@ -426,4 +428,6 @@ class Pile(object):
         coor_list.sort(reverse=reverse)
         return coor_list
 
+    def _empty(self):
+        return bool(self.images) or bool(self.texts)
 
