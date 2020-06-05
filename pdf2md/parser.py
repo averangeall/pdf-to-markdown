@@ -6,7 +6,7 @@ from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfdevice import PDFDevice
 from pdfminer.layout import LAParams
 from pdfminer.converter import PDFPageAggregator
-from pile import Pile
+from .pile import Pile
 
 
 class Parser(object):
