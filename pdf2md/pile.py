@@ -53,7 +53,7 @@ class Pile(object):
             elif type(obj) == LTChar:
                 pass
             elif type(obj) == LTLine:
-                pass                    
+                pass
             else:
                 assert False, "Unrecognized type: %s" % type(obj)
 
